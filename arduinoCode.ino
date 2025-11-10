@@ -18,10 +18,20 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 uRTCLib rtc(0x68);
 
-const int infaredPin = 9;
-const int ledPin = 2;
 
-void countDown(){
+const int infaredPin = 9;
+const int ledPin = 2; //LED Pin for Communication with Spike
+
+
+int secondsStart = 30; //Total time allowed for the game
+int points{}; //Simple points count for the Arduino
+int celebrateTime;
+bool fullCelebrate{true};
+
+
+const int CELEBRATE_DURATION = 2; //Number of seconds the robot celebrates for
+
+void countDown(){ //This will take up the top line unless the points refresh
   rtc.refresh(); //TODO: Check to make sure there are no controversies with refresh in loop()
   int secondsCount = (rtc.minute() * 60) + (rtc.second());
 
@@ -38,6 +48,12 @@ void countDown(){
 
   lcd.setCursor(center, 0);
   lcd.print(secondsCount);
+}
+
+void showPoints(){
+  lcd.setCursor(0,1);
+  lcd.print("Points: ")
+  lcd.print(points);
 }
 
 void celebrate(){
@@ -62,22 +78,30 @@ void setup() {
   lcd.init();//Init for LCD
   lcd.backlight();
   lcd.clear();
-
-  //TODO: REMOVE AFTER DEBUG
-  //FIXME #2 : Move LCD wires over to timer SCL and SDA
 }
 
 void loop() {
   rtc.refresh();
-  int sensorValue = digitalRead(infaredPin);
+  int infaredValue = digitalRead(infaredPin);
+  int now = rtc.seconds();
 
-  countDown();
+  if ((now - celebrateTime >= CELEBRATE_DURATION) && fullCelebrate = false){ //Returns to previous count after showing that you scored
+    countDown();
+    fullCelebrate = true;
+  }
 
-  if (sensorValue == LOW){
+  showPoints();
+
+
+  if (infaredValue == LOW){
     celebrate();
+    fullCelebrate = false;
+    celebrateTime = rtc.seconds();
+    points++;
   }
   else {
     // Serial.println("Not Detected");
     digitalWrite(ledPin, LOW);
+
   }
 }
