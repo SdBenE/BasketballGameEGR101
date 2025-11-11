@@ -19,19 +19,20 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 uRTCLib rtc(0x68);
 
 
-const int infaredPin = 9;
+const int infaredPin = 9; //IR for scoring detection
 const int ledPin = 2; //LED Pin for Communication with Spike
 
 
-int secondsStart = 30; //Total time allowed for the game
+const int SECONDS_START = 30; //Total time allowed for the game
 int points{}; //Simple points count for the Arduino
 int celebrateTime;
-bool fullCelebrate{true};
+bool fullCelebrate{true}; //Determine if the program has celebrated for CELEBRATE_DURATION seconds, starts as true until the player scores.
+bool done{false};
 
 
 const int CELEBRATE_DURATION = 2; //Number of seconds the robot celebrates for
 
-void countDown(){ //This will take up the top line unless the points refresh
+bool countDown(){ //This will take up the top line unless the points refresh
   rtc.refresh(); //TODO: Check to make sure there are no controversies with refresh in loop()
   int secondsCount = (rtc.minute() * 60) + (rtc.second());
 
@@ -46,13 +47,25 @@ void countDown(){ //This will take up the top line unless the points refresh
     center = 7;
   }
 
-  lcd.setCursor(center, 0);
-  lcd.print(secondsCount);
+  if (SECONDS_START - secondsCount <= 0){
+    lcd.setCursor(0,0);
+    lcd.print("!! GAME OVER !!");
+    return true;
+  }
+
+  lcd.setCursor(0, 0);
+  for (int i = 0; i < 17; i++){
+    if (i == center){
+      lcd.print(SECONDS_START - secondsCount);
+    }
+    else {lcd.print(" ")}
+  }
+
 }
 
 void showPoints(){
   lcd.setCursor(0,1);
-  lcd.print("Points: ")
+  lcd.print("Points: ");
   lcd.print(points);
 }
 
@@ -63,6 +76,7 @@ void celebrate(){
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("!!!SCORED!!!");
+  delay(2000);
 }
 
 void setup() {
@@ -83,25 +97,29 @@ void setup() {
 void loop() {
   rtc.refresh();
   int infaredValue = digitalRead(infaredPin);
-  int now = rtc.seconds();
+  int now = rtc.second();
+  
+  done = countDown();
 
-  if ((now - celebrateTime >= CELEBRATE_DURATION) && fullCelebrate = false){ //Returns to previous count after showing that you scored
-    countDown();
+  if (done){
+    delay(10000);
+    return 0;
+  }
+
+  if ((now - celebrateTime >= CELEBRATE_DURATION) && fullCelebrate == false){ //Returns to previous count after showing that you scored
+    digitalWrite(ledPin, LOW);
     fullCelebrate = true;
   }
 
   showPoints();
 
 
-  if (infaredValue == LOW){
+  if ((infaredValue == LOW) && (now - celebrateTime >= 2)){
     celebrate();
     fullCelebrate = false;
-    celebrateTime = rtc.seconds();
+    celebrateTime = rtc.second();
     points++;
   }
-  else {
-    // Serial.println("Not Detected");
-    digitalWrite(ledPin, LOW);
 
-  }
+  delay(100);
 }
