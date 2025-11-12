@@ -216,6 +216,35 @@ void celebrate_2(){
   }
 }
 
+void celebrate_3(){
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  //
+  // First: fill screen with "~"
+  // Then: Write "BOOM" on 2nd row
+  // Finally: Explode from "boom" with icd.write((char)255);
+
+  lcd.clear();
+  for (int i = 0; i < 16; i++){
+    lcd.setCursor(i, 1);
+    lcd.print(">");
+    lcd.setCursor((15 - i), 0);
+    lcd.print("<");
+    delay(50);
+  }
+
+  for (int i = 0; i < 16; i++){
+    lcd.setCursor(i, 1);
+    lcd.print(" ");
+    lcd.setCursor((15-i), 0);
+    lcd.print(" ");
+    delay(50);
+
+    // if 
+  }
+  
+}
+
 void setup() {
   Serial.begin(9600);
   pinMode(infaredPin, INPUT); //Init for Infared and LED
