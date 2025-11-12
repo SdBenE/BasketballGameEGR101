@@ -69,7 +69,7 @@ void showPoints(){
   lcd.print(points);
 }
 
-void celebrate(){
+void celebrate_1(){
   // Serial.println("Detected!");
   // digitalWrite(ledPin, HIGH);
   // \/\BOOYAKASHA/\/
@@ -199,6 +199,21 @@ void celebrate(){
   lcd.print("/");
   delay(100);
   lcd.clear();
+}
+
+void celebrate_2(){
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  // Buckets (flashing)
+  const short i = 200;
+
+  for (int j = 0; j < 4; j++){
+    lcd.clear();
+    delay(i);
+    lcd.setCursor(4, 0);
+    lcd.print("BUCKETS");
+    delay(i);
+  }
 }
 
 void setup() {
