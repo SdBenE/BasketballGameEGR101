@@ -230,21 +230,22 @@ void celebrate_3(){
     lcd.print(">");
     lcd.setCursor((15 - i), 0);
     lcd.print("<");
-    delay(50);
+    delay(25);
   }
   for (int i = 0; i < 16; i++){
     lcd.setCursor(i, 1);
     lcd.print(" ");
     lcd.setCursor((15 - i), 0);
     lcd.print(" ");
-    delay(50);
+    delay(25);
   }
-  
+  const short f = 45;
   lcd.clear();
   lcd.setCursor(6, 1);
   lcd.print("boom");
   delay(500);
   lcd.clear();
+  lcd.setCursor(6, 1);
   lcd.write((char)255);
   lcd.setCursor(7, 1);
   lcd.write((char)255);
@@ -252,7 +253,7 @@ void celebrate_3(){
   lcd.write((char)255);
   lcd.setCursor(9, 1);
   lcd.write((char)255);
-  delay(65);
+  delay(f);
   lcd.setCursor(5, 1);
   lcd.write((char)255);
   lcd.setCursor(10, 1);
@@ -265,7 +266,7 @@ void celebrate_3(){
   lcd.write((char)255);
   lcd.setCursor(9, 0);
   lcd.write((char)255);
-  delay(65);
+  delay(f);
   lcd.setCursor(4, 1);
   lcd.write((char)255);
   lcd.setCursor(5, 0);
@@ -274,7 +275,17 @@ void celebrate_3(){
   lcd.write((char)255);
   lcd.setCursor(10, 0);
   lcd.write((char)255);
-  delay(65);
+  
+  lcd.setCursor(6, 1);
+  lcd.print(" ");
+  lcd.setCursor(7, 1); // whitespace
+  lcd.print(" ");
+  lcd.setCursor(8, 1);
+  lcd.print(" ");
+  lcd.setCursor(9, 1);
+  lcd.print(" ");
+
+  delay(f);
   lcd.setCursor(3, 1);
   lcd.write((char)255);
   lcd.setCursor(4, 0);
@@ -283,7 +294,21 @@ void celebrate_3(){
   lcd.write((char)255);
   lcd.setCursor(11, 0);
   lcd.write((char)255);
-  delay(65);
+
+  lcd.setCursor(5, 1);
+  lcd.print(" ");
+  lcd.setCursor(10, 1);
+  lcd.print(" ");
+  lcd.setCursor(6, 0);
+  lcd.print(" ");       // whitespace
+  lcd.setCursor(7, 0);
+  lcd.print(" ");
+  lcd.setCursor(8, 0);
+  lcd.print(" ");
+  lcd.setCursor(9, 0);
+  lcd.print(" ");
+
+  delay(f);
   lcd.setCursor(2, 1);
   lcd.write((char)255);
   lcd.setCursor(3, 0);
@@ -292,16 +317,40 @@ void celebrate_3(){
   lcd.write((char)255);
   lcd.setCursor(12, 0);
   lcd.write((char)255);
-  delay(65);
+
+  lcd.setCursor(4, 1);
+  lcd.print(" ");
+  lcd.setCursor(5, 0);
+  lcd.print(" ");    // whitespace
+  lcd.setCursor(11, 1);
+  lcd.print(" ");
+  lcd.setCursor(10, 0);
+  lcd.print(" ");
+
+  delay(f);
   lcd.setCursor(1, 1);
   lcd.write((char)255);
   lcd.setCursor(1, 0);
+  lcd.write((char)255);
+  lcd.setCursor(2, 0);
   lcd.write((char)255);
   lcd.setCursor(14, 1);
   lcd.write((char)255);
   lcd.setCursor(14, 0);
   lcd.write((char)255);
-  delay(65);
+  lcd.setCursor(13, 0);
+  lcd.write((char)255);
+
+  lcd.setCursor(3, 1);
+  lcd.print(" ");
+  lcd.setCursor(4, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(12, 1);
+  lcd.print(" ");
+  lcd.setCursor(11, 0);
+  lcd.print(" ");
+
+  delay(f);
   lcd.setCursor(0, 1);
   lcd.write((char)255);
   lcd.setCursor(0, 0);
@@ -311,6 +360,39 @@ void celebrate_3(){
   lcd.setCursor(15, 0);
   lcd.write((char)255);
 
+  lcd.setCursor(2, 1);
+  lcd.print(" ");
+  lcd.setCursor(3, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(13, 1);
+  lcd.print(" ");
+  lcd.setCursor(12, 0);
+  lcd.print(" ");
+
+  delay(f);
+
+  lcd.setCursor(1, 1);
+  lcd.print(" ");
+  lcd.setCursor(1, 0);
+  lcd.print(" ");
+  lcd.setCursor(2, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(14, 1);
+  lcd.print(" ");
+  lcd.setCursor(14, 0);
+  lcd.print(" ");
+  lcd.setCursor(13, 0);
+  lcd.print(" ");
+  delay(f);
+  lcd.setCursor(0, 1);
+  lcd.print(" ");
+  lcd.setCursor(0, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(15, 1);
+  lcd.print(" ");
+  lcd.setCursor(15, 0);
+  lcd.print(" ");
+  delay(f);
 }
 
 void setup() {
