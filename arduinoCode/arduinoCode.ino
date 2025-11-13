@@ -50,7 +50,11 @@ bool countDown(){ //This will take up the top line unless the points refresh
   if (SECONDS_START - secondsCount <= 0){
     lcd.setCursor(0,0);
     lcd.print("!! GAME OVER !!");
-    return true;
+    while (true){
+      lcd.setCursor(0,0);
+      lcd.print("!! GAME OVER !!");
+    }
+
   }
 
   lcd.setCursor(0, 0);
@@ -58,7 +62,9 @@ bool countDown(){ //This will take up the top line unless the points refresh
     if (i == center){
       lcd.print(SECONDS_START - secondsCount);
     }
-    else {lcd.print(" ")}
+    else {
+      lcd.print(" ");
+    }
   }
 
 }
@@ -76,7 +82,7 @@ void celebrate(){
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("!!!SCORED!!!");
-  delay(2000);
+  delay(500);
 }
 
 void setup() {
@@ -99,12 +105,9 @@ void loop() {
   int infaredValue = digitalRead(infaredPin);
   int now = rtc.second();
   
-  done = countDown();
 
-  if (done){
-    delay(10000);
-    return 0;
-  }
+  done = countDown();
+  
 
   if ((now - celebrateTime >= CELEBRATE_DURATION) && fullCelebrate == false){ //Returns to previous count after showing that you scored
     digitalWrite(ledPin, LOW);
