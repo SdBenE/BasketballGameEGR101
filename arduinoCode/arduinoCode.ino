@@ -30,7 +30,7 @@ bool fullCelebrate{true}; //Determine if the program has celebrated for CELEBRAT
 bool done{false};
 
 
-const int CELEBRATE_DURATION = 2; //Number of seconds the robot celebrates for
+const int CELEBRATE_DURATION = 3; //Number of seconds the robot celebrates for
 
 bool countDown(){ //This will take up the top line unless the points refresh
   rtc.refresh(); //TODO: Check to make sure there are no controversies with refresh in loop()
@@ -51,6 +51,7 @@ bool countDown(){ //This will take up the top line unless the points refresh
     lcd.setCursor(0,0);
     lcd.print("!! GAME OVER !!");
     while (true){
+      digitalWrite(ledPin, LOW);
       lcd.setCursor(0,0);
       lcd.print("!! GAME OVER !!");
     }
@@ -75,15 +76,342 @@ void showPoints(){
   lcd.print(points);
 }
 
-void celebrate(){
-  // Serial.println("Detected!");
+void celebrate_1(){
   digitalWrite(ledPin, HIGH);
 
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  // \/\BOOYAKASHA/\/
+  //      BABY
+  lcd.clear();
+  lcd.setCursor(15, 0);
+  lcd.print("\\");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(14, 0);
+  lcd.print("\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(13, 0);
+  lcd.print("\\/\\");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(12, 0);
+  lcd.print("\\/\\B");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(11, 0);
+  lcd.print("\\/\\BO");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(10, 0);
+  lcd.print("\\/\\BOO");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(9, 0);
+  lcd.print("\\/\\BOOY");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(8, 0);
+  lcd.print("\\/\\BOOYA");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(7, 0);
+  lcd.print("\\/\\BOOYAK");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(6, 0);
+  lcd.print("\\/\\BOOYAKA");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(5, 0);
+  lcd.print("\\/\\BOOYAKAS");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(4, 0);
+  lcd.print("\\/\\BOOYAKASH");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(3, 0);
+  lcd.print("\\/\\BOOYAKASHA");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(2, 0);
+  lcd.print("\\/\\BOOYAKASHA/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(1, 0);
+  lcd.print("\\/\\BOOYAKASHA/\\");
+  delay(100);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("!!!SCORED!!!");
-  delay(500);
+  lcd.print("\\/\\BOOYAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("/\\BOOYAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("\\BOOYAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("BOOYAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("OOYAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("OYAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("YAKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("AKASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("KASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("ASHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("SHA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("HA/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("A/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("/\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("\\/");
+  delay(100);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("/");
+  delay(100);
+  lcd.clear();
+
+  digitalWrite(ledPin, LOW);
 }
+
+void celebrate_2(){
+  digitalWrite(ledPin, HIGH);
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  // Buckets (flashing)
+  const short i = 200;
+
+  for (int j = 0; j < 4; j++){
+    lcd.clear();
+    delay(i);
+    lcd.setCursor(4, 0);
+    lcd.print("BUCKETS");
+    delay(i);
+  }
+
+  digitalWrite(ledPin, LOW);
+
+}
+
+void celebrate_3(){
+  digitalWrite(ledPin, HIGH);
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  //
+  // First: fill screen with "~"
+  // Then: Write "BOOM" on 2nd row
+  // Finally: Explode from "boom" with lcd.write((char)255);
+
+  lcd.clear();
+  for (int i = 0; i < 16; i++){
+    lcd.setCursor(i, 1);
+    lcd.print(">");
+    lcd.setCursor((15 - i), 0);
+    lcd.print("<");
+    delay(25);
+  }
+  for (int i = 0; i < 16; i++){
+    lcd.setCursor(i, 1);
+    lcd.print(" ");
+    lcd.setCursor((15 - i), 0);
+    lcd.print(" ");
+    delay(25);
+  }
+  const short f = 45;
+  lcd.clear();
+  lcd.setCursor(6, 1);
+  lcd.print("boom");
+  delay(500);
+  lcd.clear();
+  lcd.setCursor(6, 1);
+  lcd.write((char)255);
+  lcd.setCursor(7, 1);
+  lcd.write((char)255);
+  lcd.setCursor(8, 1);
+  lcd.write((char)255);
+  lcd.setCursor(9, 1);
+  lcd.write((char)255);
+  delay(f);
+  lcd.setCursor(5, 1);
+  lcd.write((char)255);
+  lcd.setCursor(10, 1);
+  lcd.write((char)255);
+  lcd.setCursor(6, 0);
+  lcd.write((char)255);
+  lcd.setCursor(7, 0);
+  lcd.write((char)255);
+  lcd.setCursor(8, 0);
+  lcd.write((char)255);
+  lcd.setCursor(9, 0);
+  lcd.write((char)255);
+  delay(f);
+  lcd.setCursor(4, 1);
+  lcd.write((char)255);
+  lcd.setCursor(5, 0);
+  lcd.write((char)255);
+  lcd.setCursor(11, 1);
+  lcd.write((char)255);
+  lcd.setCursor(10, 0);
+  lcd.write((char)255);
+  
+  lcd.setCursor(6, 1);
+  lcd.print(" ");
+  lcd.setCursor(7, 1); // whitespace
+  lcd.print(" ");
+  lcd.setCursor(8, 1);
+  lcd.print(" ");
+  lcd.setCursor(9, 1);
+  lcd.print(" ");
+
+  delay(f);
+  lcd.setCursor(3, 1);
+  lcd.write((char)255);
+  lcd.setCursor(4, 0);
+  lcd.write((char)255);
+  lcd.setCursor(12, 1);
+  lcd.write((char)255);
+  lcd.setCursor(11, 0);
+  lcd.write((char)255);
+
+  lcd.setCursor(5, 1);
+  lcd.print(" ");
+  lcd.setCursor(10, 1);
+  lcd.print(" ");
+  lcd.setCursor(6, 0);
+  lcd.print(" ");       // whitespace
+  lcd.setCursor(7, 0);
+  lcd.print(" ");
+  lcd.setCursor(8, 0);
+  lcd.print(" ");
+  lcd.setCursor(9, 0);
+  lcd.print(" ");
+
+  delay(f);
+  lcd.setCursor(2, 1);
+  lcd.write((char)255);
+  lcd.setCursor(3, 0);
+  lcd.write((char)255);
+  lcd.setCursor(13, 1);
+  lcd.write((char)255);
+  lcd.setCursor(12, 0);
+  lcd.write((char)255);
+
+  lcd.setCursor(4, 1);
+  lcd.print(" ");
+  lcd.setCursor(5, 0);
+  lcd.print(" ");    // whitespace
+  lcd.setCursor(11, 1);
+  lcd.print(" ");
+  lcd.setCursor(10, 0);
+  lcd.print(" ");
+
+  delay(f);
+  lcd.setCursor(1, 1);
+  lcd.write((char)255);
+  lcd.setCursor(1, 0);
+  lcd.write((char)255);
+  lcd.setCursor(2, 0);
+  lcd.write((char)255);
+  lcd.setCursor(14, 1);
+  lcd.write((char)255);
+  lcd.setCursor(14, 0);
+  lcd.write((char)255);
+  lcd.setCursor(13, 0);
+  lcd.write((char)255);
+
+  lcd.setCursor(3, 1);
+  lcd.print(" ");
+  lcd.setCursor(4, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(12, 1);
+  lcd.print(" ");
+  lcd.setCursor(11, 0);
+  lcd.print(" ");
+
+  delay(f);
+  lcd.setCursor(0, 1);
+  lcd.write((char)255);
+  lcd.setCursor(0, 0);
+  lcd.write((char)255);
+  lcd.setCursor(15, 1);
+  lcd.write((char)255);
+  lcd.setCursor(15, 0);
+  lcd.write((char)255);
+
+  lcd.setCursor(2, 1);
+  lcd.print(" ");
+  lcd.setCursor(3, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(13, 1);
+  lcd.print(" ");
+  lcd.setCursor(12, 0);
+  lcd.print(" ");
+
+  delay(f);
+
+  lcd.setCursor(1, 1);
+  lcd.print(" ");
+  lcd.setCursor(1, 0);
+  lcd.print(" ");
+  lcd.setCursor(2, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(14, 1);
+  lcd.print(" ");
+  lcd.setCursor(14, 0);
+  lcd.print(" ");
+  lcd.setCursor(13, 0);
+  lcd.print(" ");
+  delay(f);
+  lcd.setCursor(0, 1);
+  lcd.print(" ");
+  lcd.setCursor(0, 0);
+  lcd.print(" ");   // whitespace
+  lcd.setCursor(15, 1);
+  lcd.print(" ");
+  lcd.setCursor(15, 0);
+  lcd.print(" ");
+  delay(f);
+  digitalWrite(ledPin, LOW);
+}
+
 
 void setup() {
   Serial.begin(9600);
@@ -109,17 +437,13 @@ void loop() {
   done = countDown();
   
 
-  if ((now - celebrateTime >= CELEBRATE_DURATION) && fullCelebrate == false){ //Returns to previous count after showing that you scored
-    digitalWrite(ledPin, LOW);
-    fullCelebrate = true;
-  }
-
   showPoints();
 
 
   if ((infaredValue == LOW) && (now - celebrateTime >= 2)){
-    celebrate();
-    fullCelebrate = false;
+    celebrate_1();
+    // digitalWrite(ledPin, HIGH);
+    fullCelebrate = true;
     celebrateTime = rtc.second();
     points++;
   }
