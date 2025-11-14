@@ -396,6 +396,21 @@ void celebrate_3(){
   delay(f);
 }
 
+void celebrate_4(){
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  // Point +1 *flashing*
+  
+  for (int i = 0; i < 4; i++){
+    lcd.clear();
+    delay(225);
+    lcd.setCursor(4, 0);
+    lcd.print("Point +1");
+    delay(225);
+  }
+
+}
+
 void setup() {
   Serial.begin(9600);
   pinMode(infaredPin, INPUT); //Init for Infared and LED
