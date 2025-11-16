@@ -411,6 +411,19 @@ void celebrate_4(){
 
 }
 
+void celebrate_5(){
+  // Serial.println("Detected!");
+  // digitalWrite(ledPin, HIGH);
+  // I AM GROOT
+
+  lcd.clear();
+  lcd.setCursor(6, 1);
+  lcd.print("I AM GROOT");
+  delay(1900);
+  lcd.clear();
+
+}
+
 void setup() {
   Serial.begin(9600);
   pinMode(infaredPin, INPUT); //Init for Infared and LED
