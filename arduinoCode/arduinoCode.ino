@@ -424,7 +424,19 @@ void celebrate_5(){
 
 }
 
+
+//** Next few lines create a list for the celebrates,
+//   and count the functions by dividing the number
+//   of by bytes per item*/
+typedef void (*FuncPtr)();
+
+FuncPtr function_list[] = {celebrate_1, celebrate_2, celebrate_3, celebrate_4, celebrate_5};
+int num_functions = sizeof(function_list) / sizeof(function_list[0]);
+
+
 void setup() {
+  randomSeed(analogRead(A0)); //Activates randomness for random() functions
+  
   Serial.begin(9600);
   pinMode(infaredPin, INPUT); //Init for Infared and LED
   pinMode(ledPin, OUTPUT);
@@ -460,7 +472,9 @@ void loop() {
 
 
   if ((infaredValue == LOW) && (now - celebrateTime >= 2)){
-    celebrate();
+    int r = random(num_functions);
+    function_list[r]();             // celebrate at random
+
     fullCelebrate = false;
     celebrateTime = rtc.second();
     points++;
